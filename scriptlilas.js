@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isDraggingNav = false;
     let startXNav = 0;
     let scrollLeftNav = 0;
-    let navSpeed = 0.5;
+    let navSpeed = 0.6;
 
     navTrack.scrollLeft = navTrack.scrollWidth / 2;
 
@@ -230,7 +230,7 @@ if (feedbacksRoll) {
 
   feedbacksRoll.innerHTML += feedbacksRoll.innerHTML;
 
-  let scrollSpeed = 0.7;
+  let scrollSpeed = 1.0;
   let isHovering = false;
 
   feedbacksRoll.scrollLeft = feedbacksRoll.scrollWidth / 2;
