@@ -230,7 +230,7 @@ if (feedbacksRoll) {
 
   feedbacksRoll.innerHTML += feedbacksRoll.innerHTML;
 
-  let scrollSpeed = 0.5;
+  let scrollSpeed = 0.7;
   let isHovering = false;
 
   feedbacksRoll.scrollLeft = feedbacksRoll.scrollWidth / 2;
