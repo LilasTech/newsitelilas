@@ -55,7 +55,7 @@ body {
 
 h1{
   font-family: "Cinzel Decorative", serif;
- font-size: 26px;
+ font-size: 27px;
   font-weight: 400 !important;
 font-style: normal;
 color: #391478;
@@ -87,9 +87,8 @@ font-style: normal;
 }
 
 hr {
-margin: 0 6rem 0 6rem;
-padding: 0 6rem 0 6rem;
-margin-left: 2rem;
+margin: 10px 6rem 10px 6rem;
+color: #3D1483 !important;
 }
 
 .container {
@@ -166,7 +165,6 @@ margin-left: 2rem;
 
 
 }/* ================= NAV INFINITA ================= */
-
 .nav {
   width: 100%;
   overflow: hidden;
@@ -174,6 +172,29 @@ margin-left: 2rem;
   padding: 12px 0;
   font-family: "Montserrat", sans-serif;
   font-size: 13px;
+
+  display: flex;              /* ADICIONADO */
+  align-items: center;        /* AJUSTE */
+}
+
+/* TEXTO FIXO */
+.nav-left {
+  font-family: "Cinzel Decorative", serif;
+  flex: 0 0 auto;
+  padding-left: 27px;
+  padding-right: 27px;
+  font-weight: 400;
+  color: #3D1483;
+  white-space: nowrap;
+  z-index: 2;
+  font-size: 30px;
+  
+}
+
+/* ÁREA SCROLLÁVEL */
+.nav-scroll {
+  overflow: hidden;
+  flex: 1;
 }
 
 /* trilho animado */
@@ -215,22 +236,17 @@ margin-left: 2rem;
 
 /* animação infinita */
 @keyframes scrollNav {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
-
 
 
 .btn {
   letter-spacing: 2px;
-  background: linear-gradient(45deg, #4A1483, #C697EF);
+  background: linear-gradient(45deg, #9C86C4, #C697FF);
   color: #ffff;
   padding: 0.9rem;
-  border-radius: 10px;
+  border-radius: 0px;
   font-size: 0.9rem;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
   margin:0 0 0 2rem
@@ -258,12 +274,10 @@ background-size: cover;
 word-break: break-word;
 border-radius: 9px;
 margin:  1rem 1rem 0rem 1rem;
-text-align: left;
+text-align: center;
 height: auto;
 bottom: 4rem;
 padding: 1rem;
-
-animation: borderColor 3.5s linear infinite;
 font-size: 18px;
 
 }
@@ -271,8 +285,8 @@ font-size: 18px;
 @keyframes borderColor {
   0%   { border-color: #3D1483; color: #3D1483; }
   20%  { border-color: #6C4DA1; color: #6C4DA1; }
-  40%  { border-color: #C6BCD9; color: #9963F8; }
-  60%  { border-color: #C6BCD9; color: #9963F8; }
+  40%  { border-color: #C6BCD9; color: #BBB1C3; }
+  60%  { border-color: #C6BCD9; color: #3D1483; }
   80%  { border-color: #6C4DA1; color: #6C4DA1; }
   100% { border-color: #3D1483; color: #3D1483; }
 }
@@ -280,7 +294,7 @@ font-size: 18px;
 .promessas {
   opacity: 0;
   transform: translateX(-80px);
-  transition: all 0.9s ease;
+  transition: all 0.4s ease;
 }
 
 /* quando ativar */
@@ -301,7 +315,7 @@ font-size: 18px;
 
 
 .portfolio {
-  min-height: 80vh;
+  min-height: 70vh;
   background-image: url("metodolilas.jpg");
   background-size: cover;
   background-position: center bottom; /* ancora na base da imagem */
@@ -342,7 +356,6 @@ font-size: 18px;
 /* cada item */
 .carousel-item {
   margin: 20rem 0 0 0;
-  min-width: 200px;
   max-width: 300px;
   flex: 0 0 auto;
   scroll-snap-align: center;
@@ -381,25 +394,20 @@ animation: borderColor 2s linear infinite;
 
 
 
-
-.imgcuradoria{
-align-items: center;
-justify-content: center;
-margin:0;
-width :100%;
- background-color: white;
-}
-
 .titledobody{
-  padding: 6rem 2rem 0 2rem;
+  padding: 10rem 2rem 0 2rem;
  text-align:center;
- background:white;
-}
+font-size: 23px;
 
+}
+ 
+
+.h2arq{
+margin: 0.2rem 2rem 2rem 3rem;}
 
 .nossosencontros {
-font-size: 10px;
-  padding: 0 2.7rem 3REM 2.7REM;
+font-size: 13px;
+  padding: 0 2.7rem 7REM 2.7REM;
 text-align: left;
 justify-content: left;
  color: #3D1483;
@@ -430,32 +438,21 @@ gap: 12px;
   text-align: left;
 }
 
-.btngeral {
- background: linear-gradient(270deg, #9C86C2, #C697EF, #9C86C2);
-color: white;
-border-radius: 10px;
-margin:  3rem 0;
-text-align: center;
-height: auto;
-bottom: 1rem;
-padding: 1rem;
-display: flex;
-align-items: center !important;
-justify-content: center;
-gap:8px;
-
-
-}
-
-
 
 
 
 
 .titleexemplos{
-  padding: 6rem 2rem 0 2rem;
+  padding: 10rem 3rem 7rem 3rem;
  text-align:center;
+ background: white;
 
+
+}
+.linkportif{
+margin: 3rem 0rem 2rem 0rem;
+padding: 1rem;
+color: gray;
 }
 
 
@@ -493,7 +490,7 @@ font-family: "Cinzel Decorative", serif;
 
 .feedbacks{
 color: #391478;
-margin: 4rem 0 5rem 0;
+margin: 7rem 0 7rem 0;
 padding: 0 0 0 2rem;
 text-align: center;
 
@@ -503,8 +500,8 @@ text-align: center;
 display: flex;
 flex-wrap: nowrap;
 overflow-x:auto;
-gap: 8px;
-padding: 4px;
+gap: 10px;
+padding: 3rem 0;
 scroll-behavior: smooth;
 width: 100%;
   scrollbar-width: none;      /* Firefox */
@@ -524,7 +521,7 @@ min-height: 260px;
 background-color:white;
 flex-shrink: 0;
 border-radius: 10px;
-padding: 2rem;
+padding: 2rem 3rem;
 color: #3D1483;
 }
 
@@ -622,7 +619,7 @@ text-align: left;
 }
 
 .faq-item.active .faq-answer {
-  max-height: 400px;
+  max-height: 600px;
   opacity: 1;
   margin-top: 10px;
 }
@@ -649,7 +646,11 @@ text-align: left;
 
 
 .finaltxt{
-margin: 2rem 2rem 6rem 2rem;
+font-size: 15px;
+margin: 0;
+padding: 0 3rem 3rem 3rem;
+text-align: center;
+background: white;
 }
 
 
@@ -668,9 +669,34 @@ margin: 2rem 2rem 6rem 2rem;
 
 
 
+.btngeral {
+  background: linear-gradient(45deg, #9C86C4, #C697FF);
+ 
+  color: #FFFFFF;
 
+  border-radius: 0px; 
+  
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  font-weight: 300;
+  font-size: 0.65rem;
+  
+  padding: 1.2rem 2.5rem;
+  max-width: fit-content;
+  margin: 4rem auto; /* Centralização limpa */
+  border: 1px solid transparent;
+  
+  transition: all 0.4s ease;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+}
 
-
+.btngeral:hover {
+  background-color: transparent;
+  color: #9C86C2;
+  border: 1px solid #9C86C2;
+}
 
 
 
