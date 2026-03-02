@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   revealOnScroll();
 
   // =========================
-  // CAROUSEL (AUTO CONTÍNUO + DRAG)  ✅ ATUALIZADO (SEM PULO)
+  // CAROUSEL (AUTO CONTÍNUO + DRAG)
   // =========================
   const carousel = document.querySelector('.carousel');
   const btnLeft = document.querySelector('.arrow.left');
@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (carousel) {
 
-    // DUPLICA os cards para loop infinito real
     carousel.innerHTML += carousel.innerHTML;
 
     let isDragging = false;
@@ -43,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let scrollLeft = 0;
     let speed = 0.5;
 
-    // começa já na metade
     carousel.scrollLeft = carousel.scrollWidth / 2;
 
     function autoScroll() {
@@ -52,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const halfWidth = carousel.scrollWidth / 2;
 
-        // LOOP INFINITO REAL (sem salto visual)
         if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
           carousel.scrollLeft -= halfWidth;
         }
@@ -85,13 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
       scrollLeft = carousel.scrollLeft;
     });
 
-    carousel.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-
-    carousel.addEventListener('mouseleave', () => {
-      isDragging = false;
-    });
+    carousel.addEventListener('mouseup', () => isDragging = false);
+    carousel.addEventListener('mouseleave', () => isDragging = false);
 
     carousel.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
@@ -106,20 +98,17 @@ document.addEventListener("DOMContentLoaded", function () {
       scrollLeft = carousel.scrollLeft;
     });
 
-    carousel.addEventListener('touchend', () => {
-      isDragging = false;
-    });
+    carousel.addEventListener('touchend', () => isDragging = false);
 
     carousel.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
       const walk = e.touches[0].pageX - startX;
       carousel.scrollLeft = scrollLeft - walk;
     });
-
   }
 
   // =========================
-  // NAV AUTO INFINITO + DRAG REAL
+  // NAV AUTO INFINITO + DRAG
   // =========================
   const navTrack = document.querySelector('.nav-track');
 
@@ -151,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     autoScrollNav();
 
-    // ================= leftdepromessas =================
     const promessas = document.querySelectorAll('.promessas');
 
     const observer = new IntersectionObserver((entries) => {
@@ -167,31 +155,18 @@ document.addEventListener("DOMContentLoaded", function () {
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.3
-    });
+    }, { threshold: 0.3 });
 
-    promessas.forEach((item) => {
-      observer.observe(item);
-    });
+    promessas.forEach((item) => observer.observe(item));
 
-    // ================= DRAG MOUSE =================
     navTrack.addEventListener('mousedown', (e) => {
       isDraggingNav = true;
-      navTrack.classList.add('dragging');
       startXNav = e.pageX;
       scrollLeftNav = navTrack.scrollLeft;
     });
 
-    navTrack.addEventListener('mouseup', () => {
-      isDraggingNav = false;
-      navTrack.classList.remove('dragging');
-    });
-
-    navTrack.addEventListener('mouseleave', () => {
-      isDraggingNav = false;
-      navTrack.classList.remove('dragging');
-    });
+    navTrack.addEventListener('mouseup', () => isDraggingNav = false);
+    navTrack.addEventListener('mouseleave', () => isDraggingNav = false);
 
     navTrack.addEventListener('mousemove', (e) => {
       if (!isDraggingNav) return;
@@ -200,86 +175,96 @@ document.addEventListener("DOMContentLoaded", function () {
       navTrack.scrollLeft = scrollLeftNav - walk;
     });
 
-    // ================= TOUCH MOBILE =================
     navTrack.addEventListener('touchstart', (e) => {
       isDraggingNav = true;
       startXNav = e.touches[0].pageX;
       scrollLeftNav = navTrack.scrollLeft;
     });
 
-    navTrack.addEventListener('touchend', () => {
-      isDraggingNav = false;
-    });
+    navTrack.addEventListener('touchend', () => isDraggingNav = false);
 
     navTrack.addEventListener('touchmove', (e) => {
       if (!isDraggingNav) return;
       const walk = e.touches[0].pageX - startXNav;
       navTrack.scrollLeft = scrollLeftNav - walk;
     });
+  }
 
+  // =========================
+  // FEEDBACKS AUTO INFINITO + DRAG MANUAL
+  // =========================
+  const feedbacksRoll = document.querySelector('.feedbacksroll');
+
+  if (feedbacksRoll) {
+
+    feedbacksRoll.innerHTML += feedbacksRoll.innerHTML;
+
+    let scrollSpeed = 0.5;
+    let isDraggingFeedback = false;
+    let startXFeedback = 0;
+    let scrollLeftFeedback = 0;
+
+    const originalWidth = feedbacksRoll.scrollWidth / 2;
+
+    function autoScrollFeedbacks() {
+
+      if (!isDraggingFeedback) {
+        feedbacksRoll.scrollLeft += scrollSpeed;
+
+        if (feedbacksRoll.scrollLeft >= originalWidth) {
+          feedbacksRoll.scrollLeft -= originalWidth;
+        }
+
+        if (feedbacksRoll.scrollLeft <= 0) {
+          feedbacksRoll.scrollLeft += originalWidth;
+        }
+      }
+
+      requestAnimationFrame(autoScrollFeedbacks);
+    }
+
+    autoScrollFeedbacks();
+
+    feedbacksRoll.addEventListener('mousedown', (e) => {
+      isDraggingFeedback = true;
+      startXFeedback = e.pageX;
+      scrollLeftFeedback = feedbacksRoll.scrollLeft;
+    });
+
+    feedbacksRoll.addEventListener('mouseup', () => isDraggingFeedback = false);
+    feedbacksRoll.addEventListener('mouseleave', () => isDraggingFeedback = false);
+
+    feedbacksRoll.addEventListener('mousemove', (e) => {
+      if (!isDraggingFeedback) return;
+      e.preventDefault();
+      const walk = e.pageX - startXFeedback;
+      feedbacksRoll.scrollLeft = scrollLeftFeedback - walk;
+    });
+
+    feedbacksRoll.addEventListener('touchstart', (e) => {
+      isDraggingFeedback = true;
+      startXFeedback = e.touches[0].pageX;
+      scrollLeftFeedback = feedbacksRoll.scrollLeft;
+    });
+
+    feedbacksRoll.addEventListener('touchend', () => isDraggingFeedback = false);
+
+    feedbacksRoll.addEventListener('touchmove', (e) => {
+      if (!isDraggingFeedback) return;
+      const walk = e.touches[0].pageX - startXFeedback;
+      feedbacksRoll.scrollLeft = scrollLeftFeedback - walk;
+    });
   }
 
 });
-// =========================
-// FEEDBACKS AUTO INFINITO
-// =========================
-const feedbacksRoll = document.querySelector('.feedbacksroll');
-
-if (feedbacksRoll) {
-
-  // Duplica conteúdo apenas uma vez
-  feedbacksRoll.innerHTML += feedbacksRoll.innerHTML;
-
-  let scrollSpeed = 0.5;
-  let isHovering = false;
-
-  const originalWidth = feedbacksRoll.scrollWidth / 2;
-
-  function autoScrollFeedbacks() {
-
-    if (!isHovering) {
-
-      feedbacksRoll.scrollLeft += scrollSpeed;
-
-      // Quando passar da metade, volta suavemente
-      if (feedbacksRoll.scrollLeft >= originalWidth) {
-        feedbacksRoll.scrollLeft -= originalWidth;
-      }
-
-      // Se o usuário arrastar muito para trás
-      if (feedbacksRoll.scrollLeft <= 0) {
-        feedbacksRoll.scrollLeft += originalWidth;
-      }
-    }
-
-    requestAnimationFrame(autoScrollFeedbacks);
-  }
-
-  feedbacksRoll.addEventListener('mouseenter', () => {
-    isHovering = true;
-  });
-
-  feedbacksRoll.addEventListener('mouseleave', () => {
-    isHovering = false;
-  });
-
-  autoScrollFeedbacks();
-}
-
-
-
-
 
 window.addEventListener('scroll', function() {
   const nav = document.querySelector('.nav');
   const heroSection = document.querySelector('.hero');
   
-  // Detecta quando o topo da página passou da altura da Hero
   if (window.scrollY > (heroSection.offsetHeight - 50)) {
     nav.classList.add('nav-active');
   } else {
     nav.classList.remove('nav-active');
   }
 });
-
-
