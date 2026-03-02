@@ -88,7 +88,7 @@ font-style: normal;
 
 hr {
 margin: 10px 6rem 10px 6rem;
-color: #3D1483 !important;
+color: #AEA5C0 !important;
 }
 
 .container {
@@ -103,19 +103,26 @@ color: #3D1483 !important;
 .hero {
   position: relative;
   width: 100%;
-  min-height: 70vh;
-
+  min-height: 80vh;
+  top: 0;
   object-fit: contain;
+  background: white;
 }
 
 .heroh1{
+
+  letter-spacing: 0.25rem; 
   font-family: "Cinzel Decorative", serif;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   text-align: left;
-  padding: 3rem 2rem 2rem 2rem;
+  padding: 10rem 2rem 2rem 2rem;
+  COLOR: #9F91B9; 
 }
 
 .heroh2{
+  COLOR: #9F91B9; 
+text-transform: uppercase;
+  letter-spacing: 0.25rem; 
   letter-spacing: 2px;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
@@ -132,6 +139,7 @@ color: #3D1483 !important;
   left: 0;
   z-index: 0;
   pointer-events: none;
+ BACKGROUND: WHITE;
 }
 
 .hero-overlay {
@@ -165,20 +173,74 @@ color: #3D1483 !important;
 
 
 }/* ================= NAV INFINITA ================= */
+/* Estado Base da Nav (Enquanto na Hero) */
 .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Empilha os elementos: Logo em cima, Scroll embaixo */
+  align-items: center;
+  padding: 3rem 0 1rem 0;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+}
+
+.nav-left {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.5rem;
+  transition: all 0.7s ease;
+  /* Centralizado por padrão no flex-column */
+}
+
+.nav-scroll {
   width: 100%;
   overflow: hidden;
-  position: relative;
-  padding: 12px 0;
-  font-family: "Montserrat", sans-serif;
-  font-size: 13px;
-
-  display: flex;              /* ADICIONADO */
-  align-items: center;        /* AJUSTE */
+  margin-top: 2rem;
+  transition: all 0.7s ease;
 }
+
+/* Estado Ativo (Depois da Hero) */
+.nav.nav-active {
+  flex-direction: row; /* Volta para o alinhamento horizontal */
+  justify-content: space-between;
+  padding: 0.8rem 5%;
+  border-bottom: 1px solid rgba(61, 20, 131, 0.1);
+BACKGROUND: linear-gradient(280deg, #DCD4EF 50%, #C6BCD9 100%);
+}
+
+.nav.nav-active .nav-left {
+  font-size: 1.7rem;
+  letter-spacing: 0.3rem;
+  /* No row, ele volta naturalmente para a esquerda */
+}
+
+.nav.nav-active .nav-scroll {
+  width: auto; /* Deixa de tomar todo o width */
+  margin-top: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* TEXTO FIXO */
 .nav-left {
+text-transform: uppercase;
+  letter-spacing: 0.25rem; 
   font-family: "Cinzel Decorative", serif;
   flex: 0 0 auto;
   padding-left: 27px;
@@ -219,14 +281,18 @@ color: #3D1483 !important;
 
 /* botões */
 .nav-content a {
+text-transform: uppercase;
+  letter-spacing: 0.25rem; 
   display: inline-block;
-  padding: 10px 22px;
-  background: linear-gradient(45deg, #F0E8F5, #E9E2F8);
+  padding: 8px 17px;
+BORDER: 1PX SOLID #C6BCD9 ;
   color: #3D1483;
-  border-radius: 12px;
+  border-radius: 0px;
   text-decoration: none;
   transition: 0.3s ease;
   white-space: nowrap;
+
+  
 }
 
 .nav-content a:hover {
@@ -242,14 +308,21 @@ color: #3D1483 !important;
 
 
 .btn {
-  letter-spacing: 2px;
-  background: linear-gradient(45deg, #9C86C4, #C697FF);
-  color: #ffff;
+
+BACKGROUND: linear-gradient(280deg,  #DCD4EF 50%, #C6BCD9 100%);
+color: #FFFF;
+text-transform: uppercase;
+  letter-spacing: 0.25rem; 
   padding: 0.9rem;
   border-radius: 0px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  margin:0 0 0 2rem
+  margin:0 0 0 2rem;
+transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 15px rgba(156, 134, 194, 0.1);
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
 }
 
 .telefoneinicio {
@@ -504,8 +577,13 @@ gap: 10px;
 padding: 3rem 0;
 scroll-behavior: smooth;
 width: 100%;
-  scrollbar-width: none;      /* Firefox */
-  -ms-overflow-style: none;   /* IE e Edge antigo */
+scrollbar-width: none;
+-ms-overflow-style: none;
+cursor: grab;
+}
+
+.feedbacksroll:active{
+cursor: grabbing;
 }
 
 .feedbacksroll::-webkit-scrollbar {
@@ -619,7 +697,7 @@ text-align: left;
 }
 
 .faq-item.active .faq-answer {
-  max-height: 600px;
+  max-height: 700px;
   opacity: 1;
   margin-top: 10px;
 }
@@ -670,16 +748,16 @@ background: white;
 
 
 .btngeral {
-  background: linear-gradient(45deg, #9C86C4, #C697FF);
- 
-  color: #FFFFFF;
-
+BACKGROUND: linear-gradient(280deg,  #DCD4EF 50%, #C6BCD9 100%);
+color: #FFFF;
+text-transform: uppercase;
+  letter-spacing: 0.25rem; 
+  padding: 0.9rem;
   border-radius: 0px; 
   
   text-transform: uppercase;
-  letter-spacing: 0.15rem;
   font-weight: 300;
-  font-size: 0.65rem;
+  font-size: rem;
   
   padding: 1.2rem 2.5rem;
   max-width: fit-content;
@@ -870,3 +948,4 @@ display:flex;
     color: #0E4362;
   }
 }
+
